@@ -10,32 +10,38 @@ import androidx.navigation.NavArgs
 import androidx.navigation.NavArgsLazy
 import androidx.navigation.fragment.navArgs
 import com.chairunissa.recyclerview.R
+import com.chairunissa.recyclerview.databinding.FragmentBlankBinding
+import com.chairunissa.recyclerview.databinding.FragmentHomeBinding
 
 
 class FragmentBlank : Fragment() {
 
     private val args: FragmentBlankArgs by navArgs()
 
+    private var _binding: FragmentBlankBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var txtName: TextView
-    private lateinit var txtPhone: TextView
+//    private lateinit var txtName: TextView
+//    private lateinit var txtPhone: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_blank, container, false)
+        _binding = FragmentBlankBinding.inflate(inflater, container, false)
+        return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        txtName = view.findViewById(R.id.txt_name_detail)
-        txtPhone = view.findViewById(R.id.txt_phone_number_detail)
+//        txtName = view.findViewById(R.id.txt_name_detail)
+//        txtPhone = view.findViewById(R.id.txt_phone_number_detail)
+
         val name = args.user.username
         val phone = args.user.phoneNumber
 
-        txtName.text = name
-        txtPhone.text = phone.toString()
+        binding.txtNameDetail.text = name
+        binding.txtPhoneNumberDetail.text = phone.toString()
     }
 }
